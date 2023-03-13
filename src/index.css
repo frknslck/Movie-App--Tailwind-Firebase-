@@ -4,7 +4,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap");
 
 body{
-  background-color: #23242a;
+  background-color: #23242a !important;
   overflow-y: hidden;
 }
 
