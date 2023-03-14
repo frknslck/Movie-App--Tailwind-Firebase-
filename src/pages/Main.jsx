@@ -9,6 +9,9 @@ const Main = ({movies, setMovies}) => {
 
   const handleSearch = (e) => {
     e.preventDefault()
+    if (!search.trim()) {
+      return;
+    }
     axios.get(url).then((response) => {
       setMovies(response.data)
     }).catch((error) => {
@@ -59,7 +62,7 @@ const Main = ({movies, setMovies}) => {
       {<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5 p-5">
         {movies?.results?.map((movie) => {
           return(
-            <MovieCard movie={movie}/>
+            <MovieCard movie={movie} key={movie.id}/>
           )
         })}
       </div>}
