@@ -47,7 +47,7 @@ const AuthContextProvider = ({ children }) => {
         }
       }
       const values = {register, login, logout, uid: auth?.currentUser?.uid, photoURL: "https://external-preview.redd.it/t9Yn_RtUr4uwS5b9JHRfGKUZqkVh2caE9dPF01UDPIM.jpg?auto=webp&v=enabled&s=f7f3c67e218e0b88347ffc5ec15675212926106a", displayName: "Furkan"}
-      console.log(values.currentUser);
+      console.log(values.uid);
   return (
     <AuthContext.Provider value={values}>
         {children}

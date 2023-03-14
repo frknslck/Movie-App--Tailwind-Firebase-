@@ -5,7 +5,6 @@
 
 body{
   background-color: #23242a !important;
-  overflow-y: hidden;
 }
 
 /** element bazında default olarak vermek istediğimiz stilleri base layer'da veriyoruz */

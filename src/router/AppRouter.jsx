@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Main from "../pages/Main"
@@ -7,14 +7,30 @@ import Register from "../pages/Register";
 import MovieDetail from "../pages/MovieDetail";
 
 const AppRouter = () => {
+  const [movies, setMovies] = useState([])
+  const axios = require("axios");
+  // const apiKey = process.env.REACT_APP_API2_KEY
+  // const url = `https://api.themoviedb.org/3/movie/550?api_key=${apiKey}`
+  const url = `https://api.themoviedb.org/3/discover/movie?api_key=7d204acf4302e3aec97acadbf83232d1`
+
+  useEffect(() => {
+    axios.get(url).then((response) => {
+      setMovies(response.data)
+    }).catch((error) => {
+      console.log(error);
+    })
+  }, [])
+
   return (
     <>
       <Navbar/>
       <Routes>
-        <Route path="/" element={<Main/>}/> 
+        <Route path="/" element={<Main movies={movies}/>}/> 
         <Route path="/login" element={<Login/>}/> 
         <Route path="/register" element={<Register/>}/> 
-        <Route path="/details/:id" element={<MovieDetail/>}/> 
+        <Route path="/details/:id" element={<MovieDetail/>}>
+          <Route path="" element={<MovieDetail/>}/>
+        </Route>
       </Routes>
     </>
   );
