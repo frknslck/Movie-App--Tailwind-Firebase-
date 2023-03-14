@@ -6,7 +6,7 @@ import { useNavigate, Link } from "react-router-dom";
 const Register = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-  const { register } = useContext(AuthContext)
+  const { register, signUpProvider } = useContext(AuthContext)
   const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
@@ -63,6 +63,7 @@ const Register = () => {
         <button
           className="flex justify-between text-center btn-danger"
           type="button"
+          onClick={() => signUpProvider()}
         >
           Continue with Google
           <GoogleIcon color="currentColor" />

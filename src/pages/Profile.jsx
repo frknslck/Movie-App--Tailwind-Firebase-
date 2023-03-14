@@ -2,7 +2,8 @@ import React, { useContext } from 'react'
 import { AuthContext } from "../context/AuthContextProvider";
 
 const Profile = () => {
-    const {photoURL, displayName} = useContext(AuthContext)
+    const {currentUser} = useContext(AuthContext)
+    const {displayName, photoURL, email} = currentUser
   return (
     <div>
     <div className="overflow-hidden flex-1 h-screen justify-center items-center bg-[#23242a]">
@@ -15,7 +16,6 @@ const Profile = () => {
             <img
             className="w-40 h-40 rounded-full mx-auto"
             src={photoURL}
-            alt="John Doe"
             />
         </div>
         <div className="relative z-0 w-full my-auto group">
@@ -28,6 +28,17 @@ const Profile = () => {
             value={displayName}
           />
           <label htmlFor="floating_email">User Name:</label>
+        </div>
+        <div className="relative z-0 w-full my-auto group">
+          <input
+            type="text"
+            className="peer text-center"
+            placeholder=" "
+            required
+            contentEditable="false"
+            value={email}
+          />
+          <label htmlFor="floating_email">E-mail:</label>
         </div>
       </form>
     </div>

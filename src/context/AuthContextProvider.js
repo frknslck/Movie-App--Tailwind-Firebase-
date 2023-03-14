@@ -1,5 +1,5 @@
-import React, { createContext, useContext } from 'react'
-import { createUserWithEmailAndPassword,signInWithEmailAndPassword, signOut } from "firebase/auth"
+import React, { createContext, useState, useEffect } from 'react'
+import { createUserWithEmailAndPassword,signInWithEmailAndPassword, signOut, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, sendPasswordResetEmail, updateProfile } from "firebase/auth"
 import toast from "react-hot-toast";
 import { auth } from '../auth/firebase';
 import { useNavigate } from 'react-router-dom';
@@ -12,10 +12,20 @@ export const AuthContext = createContext()
 // }
 
 const AuthContextProvider = ({ children }) => {
+  const [currentUser, setCurrentUser] = useState("")
     const navigate = useNavigate()
-    const register = async (email, password) => {
+
+    useEffect(() => {
+      userObserver();
+    }, []);  
+
+    const register = async (email, password, displayName, photoURL) => {
         try {
           const {user} = await createUserWithEmailAndPassword(auth, email, password)
+          await updateProfile(auth.currentUser, {
+            displayName: displayName,
+            photoURL: photoURL
+          });
           toast.success("Succesfully registered!")
           console.log(user);
           navigate("/")
@@ -46,8 +56,39 @@ const AuthContextProvider = ({ children }) => {
           toast.error(error.message)
         }
       }
-      const values = {register, login, logout, uid: auth?.currentUser?.uid, photoURL: "https://external-preview.redd.it/t9Yn_RtUr4uwS5b9JHRfGKUZqkVh2caE9dPF01UDPIM.jpg?auto=webp&v=enabled&s=f7f3c67e218e0b88347ffc5ec15675212926106a", displayName: "Furkan"}
-      console.log(values.uid);
+
+      const userObserver = () => {
+        onAuthStateChanged(auth, (user) => {
+          if (user) {
+            const { email, displayName, photoURL } = user
+            setCurrentUser({email, displayName, photoURL})
+          } else {
+            setCurrentUser(false)
+          }
+        });
+      }
+
+      const signUpProvider = () => {
+        const provider = new GoogleAuthProvider();
+        signInWithPopup(auth, provider)
+        .then(() => {
+          toast.success("Succesfully logged in!")
+          navigate("/")
+        }).catch((error) => {
+          toast.error(error)
+        });
+       }
+
+      // const sendPasswordResetEmail(auth, email)
+      //   .then(() => {
+      //     toast.success("Password reset email sent!")
+      //   })
+      //   .catch((error) => {
+      //     toast.error(error.message)
+      // });
+
+      const values = {register, login, logout, signUpProvider, currentUser}
+      console.log(currentUser);
   return (
     <AuthContext.Provider value={values}>
         {children}
