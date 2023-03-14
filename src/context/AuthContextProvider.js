@@ -17,6 +17,7 @@ const AuthContextProvider = ({ children }) => {
         try {
           const {user} = await createUserWithEmailAndPassword(auth, email, password)
           toast.success("Succesfully registered!")
+          console.log(user);
           navigate("/")
           return user
         } catch (error) {
@@ -45,8 +46,8 @@ const AuthContextProvider = ({ children }) => {
           toast.error(error.message)
         }
       }
-      
-      const values = {register, login, logout, currentUser: {displayName: "Furkan"} }
+      const values = {register, login, logout, uid: auth?.currentUser?.uid, photoURL: "https://external-preview.redd.it/t9Yn_RtUr4uwS5b9JHRfGKUZqkVh2caE9dPF01UDPIM.jpg?auto=webp&v=enabled&s=f7f3c67e218e0b88347ffc5ec15675212926106a", displayName: "Furkan"}
+      console.log(values.currentUser);
   return (
     <AuthContext.Provider value={values}>
         {children}
