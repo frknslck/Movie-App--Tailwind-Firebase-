@@ -12,7 +12,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     await login(email, password)
-    navigate("/")
+
     e.target.reset()
   }
 
@@ -68,7 +68,7 @@ const Login = () => {
         </button>
       </form>
     </div>
-  </div>
+    </div>
   );
 };
 

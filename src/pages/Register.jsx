@@ -12,7 +12,6 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     await register(email, password)
-    navigate("/")
     e.target.reset()
   }
 

@@ -6,6 +6,7 @@ import Login from "../pages/Login"
 import Register from "../pages/Register";
 import MovieDetail from "../pages/MovieDetail";
 import PrivateRouter from "./PrivateRouter";
+import Profile from "../pages/Profile";
 
 const AppRouter = () => {
   const [movies, setMovies] = useState([])
@@ -26,11 +27,14 @@ const AppRouter = () => {
     <>
       <Navbar/>
       <Routes>
-        <Route path="/" element={<Main movies={movies}/>}/> 
+        <Route path="/" element={<Main movies={movies} setMovies={setMovies}/>}/>
         <Route path="/login" element={<Login/>}/> 
         <Route path="/register" element={<Register/>}/> 
         <Route path="/details/:id" element={<PrivateRouter/>}>
           <Route path="" element={<MovieDetail/>}/>
+        </Route>
+        <Route path="/profile" element={<PrivateRouter/>}>
+          <Route path="" element={<Profile/>}/>
         </Route>
       </Routes>
     </>

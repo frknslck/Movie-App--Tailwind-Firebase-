@@ -11,7 +11,7 @@ const MovieCard = ({movie}) => {
               <a href="#!" data-te-ripple-init="" data-te-ripple-color="light">
                 <img
                   className="rounded-t-lg"
-                  src={`https://image.tmdb.org/t/p/original/${poster_path}`}
+                  src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
                   alt=""
                 />
               </a>

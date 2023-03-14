@@ -42,6 +42,15 @@ const Navbar = () => {
                 aria-labelledby="dropdownMenuButton2"
                 data-te-dropdown-menu-ref=""
               >
+                {uid ? <li>
+                  <Link
+                    className="block w-full whitespace-nowrap bg-transparent py-2 px-4 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-white/30"
+                    to="/profile"
+                    data-te-dropdown-item-ref=""
+                  >
+                    Profile
+                  </Link>
+                </li> : null}
                 {uid ? null : <li>
                   <Link
                     className="block w-full whitespace-nowrap bg-transparent py-2 px-4 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-white/30"
@@ -76,7 +85,7 @@ const Navbar = () => {
           {/* Right elements */}
         </div>
       </nav>
-      <div className="h-[100px]"></div>
+      <div className="h-[75px]"></div>
     </div>
   );
 };
