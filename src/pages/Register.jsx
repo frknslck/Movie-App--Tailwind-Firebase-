@@ -34,7 +34,7 @@ const Register = () => {
           />
           <label htmlFor="floating_email">Email</label>
         </div>
-        <div className="relative z-0 w-full mb-6 group">
+        <div className="relative z-0 w-full mb-6 group focus:bg-transparent">
           <input
             name="floating_password"
             type="password"
