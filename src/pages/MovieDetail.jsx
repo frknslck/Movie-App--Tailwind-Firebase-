@@ -17,22 +17,28 @@ const MovieDetail = () => {
     })
   }, [])
   return (
-    <>
-      <div className="text-center mb-[5rem]">
-        <h1 className="text-white text-6xl mb-5">{title}</h1>
-        <h3 className="text-white text-2xl ">"{tagline}"</h3>
+    <div className="text-white text-center">
+
+      <div className="mb-[3rem]">
+        <h1 className="text-6xl mb-5">{title}</h1>
+        {tagline && <h3 className="text-2xl ">"{tagline}"</h3>}
       </div>
-      <div className="flex">
+
+      <div className="flex mx-[10rem] gap-10">
         <img className="w-[400px]" src={`https://image.tmdb.org/t/p/w500/${poster_path}`} alt=""/>
-        <div className="">
-          <h3 className="text-white">{overview}</h3>
-          <p className="text-white">{genres?.map((genre) => genre.name)}</p>
-          <p className="text-white">{popularity}</p>
-          <p className="text-white">{vote_average}</p>
-          <p className="text-white">{vote_count}</p>
+
+        <div className="calismio-arkadas">
+          <div className="mb-10">
+            <h3 className="text-3xl mb-5">Overview:</h3>
+            <p className="text-xl">{overview}</p>
+          </div>
+
+          <p className="text-2xl">Genres: {genres?.map((genre) => ` ${genre.name}`).join(",")}</p>
+          <p className="text-2xl">Popularity: {popularity}</p>
+          <p className="text-2xl">Rating: {vote_average?.toFixed(1)} in {vote_count} votes</p>
         </div>
       </div>
-    </>
+    </div>
   )
 };
 

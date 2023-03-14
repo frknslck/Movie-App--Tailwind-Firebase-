@@ -127,3 +127,10 @@ body {
       transform: rotate(360deg);
   }
 }
+
+.calismio-arkadas{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem !important;
+  margin: auto 0;
+}
