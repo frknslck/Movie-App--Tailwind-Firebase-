@@ -4,21 +4,21 @@ import avatar from "../assets/icons/avatar.png"
 import { toast } from 'react-hot-toast';
 
 const Profile = () => {
-    const [edit, setEdit] = useState(false)
+    const [edit, setEdit] = useState(true)
     const {currentUser, setCurrentUser, profileChange} = useContext(AuthContext)
     const {displayName, photoURL, email} = currentUser
 
     const editStatus = () => {
-      if (edit == true) {
+      if (edit == false) {
         toast.error("Already in edit mode!")
       }
-      setEdit(true)
+      setEdit(false)
     }
 
     const saveProfile = (e) => {
       e.preventDefault()
       profileChange(displayName, photoURL)
-      setEdit(false)
+      setEdit(true)
     }
 
   return (
@@ -42,7 +42,7 @@ const Profile = () => {
             required
             value={displayName || "User"}
             onChange={(e) => setCurrentUser({...currentUser, displayName: e.target.value})}
-            contentEditable={edit}
+            disabled={edit}
           />
           <label>User Name</label>
         </div>
@@ -52,7 +52,7 @@ const Profile = () => {
             className="peer text-center"
             required
             value={email}
-            contentEditable="false"
+            disabled="true"
           />
           <label>E-mail</label>
         </div>
@@ -63,7 +63,7 @@ const Profile = () => {
             required
             value={photoURL}
             onChange={(e) => setCurrentUser({...currentUser, photoURL: e.target.value})}
-            contentEditable={edit}
+            disabled={edit}
           />
           <label>Profile Picture URL</label>
         </div>
@@ -71,7 +71,7 @@ const Profile = () => {
           <button className="btn-danger" type="button" onClick={() => editStatus()}>
             Edit Profile
           </button>
-          <button className={edit ? "btn-danger" : "btn-secondary cursor-default"} type="submit" disabled={edit ? false : true}>
+          <button className={!edit ? "btn-danger" : "btn-secondary cursor-default"} type="submit" disabled={!edit ? false : true}>
             Save Profile
           </button>
         </div>
