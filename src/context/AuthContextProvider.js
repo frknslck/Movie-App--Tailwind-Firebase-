@@ -12,9 +12,9 @@ export const AuthContext = createContext()
 // }
 
 const AuthContextProvider = ({ children }) => {
-    const [currentUser, setCurrentUser] = useState(false)
-    //   JSON.parse(sessionStorage.getItem("user")) || false
-    // );
+    const [currentUser, setCurrentUser] = useState(
+      JSON.parse(sessionStorage.getItem("user")) || false
+    );
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -64,13 +64,13 @@ const AuthContextProvider = ({ children }) => {
           if (user) {
             const { email, displayName, photoURL } = user
             setCurrentUser({email, displayName, photoURL})
-            // sessionStorage.setItem(
-            //   "user",
-            //   JSON.stringify({ email, displayName, photoURL })
-            // );
+            sessionStorage.setItem(
+              "user",
+              JSON.stringify({ email, displayName, photoURL })
+            );
           } else {
             setCurrentUser(false)
-            // sessionStorage.clear();
+            sessionStorage.clear();
           }
         });
       }
@@ -96,7 +96,20 @@ const AuthContextProvider = ({ children }) => {
           });
       };
 
-      const values = {register, login, logout, signUpProvider, forgotPassword, currentUser}
+      const profileChange = async (displayName, photoURL) => {
+        try {
+          await updateProfile(auth.currentUser, {
+            displayName: displayName,
+            photoURL: photoURL
+          });
+          toast.success("Profile saved!")
+          return true
+        } catch (error) {
+          toast.error(error.message)
+        }
+      }
+
+      const values = {register, login, logout, signUpProvider, forgotPassword, currentUser, setCurrentUser, profileChange}
       console.log(currentUser);
   return (
     <AuthContext.Provider value={values}>
