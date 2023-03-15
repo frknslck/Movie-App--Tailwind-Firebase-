@@ -17,7 +17,7 @@ const MovieCard = ({movie}) => {
     return (
         <>
           <div className="flex justify-center">
-            <div className="block max-w-sm rounded-lg bg-white shadow-lg dark:bg-neutral-700">
+            <div className="block max-w-sm rounded-lg bg-white shadow-[0_4px_9px_-4px_#23242a] dark:bg-neutral-700">
               <div className='relative group' data-te-ripple-init="" data-te-ripple-color="light">
                 <img
                   className="rounded-t-lg"

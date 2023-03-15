@@ -22,7 +22,7 @@
     @apply text-red-main hover:text-white border-2 border-red-main hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-red-main dark:text-red-main dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900;
   }
   .btn-secondary {
-    @apply text-black bg-gray-700 font-medium rounded-lg text-[1.05rem] px-5 py-2.5 mr-2 mb-2 w-[300px] mt-[15px] dark:bg-gray-300;
+    @apply text-white dark:text-black bg-gray-700  dark:bg-gray-300 font-medium rounded-lg text-[1.05rem] px-5 py-2.5 mr-2 mb-2 w-[300px] mt-[15px];
   }
   .form-container{
     @apply mt-[10vh] mx-auto overflow-hidden relative rounded-[8px] bg-gray-100 dark:bg-[#1c1c1c] before:content-[""] before:absolute before:w-[380px] before:h-[420px] before:top-[-50%] before:left-[-50%] after:content-[""] after:absolute after:w-[380px] after:h-[420px] after:top-[-50%] after:left-[-50%] custom-linear-gradient

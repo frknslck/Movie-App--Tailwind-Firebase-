@@ -12,6 +12,16 @@ const MovieDetail = () => {
   const detailUrl = `https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}`
   const videoUrl = `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${apiKey}`
 
+  const getVoteClass = (vote) => {
+    if (vote >= 8) {
+      return "green";
+    } else if (vote >= 6) {
+      return "orange";
+    } else {
+      return "red";
+    }
+  };
+  
   useEffect(() => {
     axios.get(detailUrl).then((response) => setDetail(response.data))
     .catch((error) => console.log(error));
@@ -20,7 +30,7 @@ const MovieDetail = () => {
   }, [detailUrl, videoUrl])
 
   return (
-    <div className="text-white text-center w-10/12 mx-auto">
+    <div className="dark:text-white text-center w-10/12 mx-auto">
 
       <div className="mb-[3rem]">
         <h1 className="text-6xl mb-5">{title}</h1>
@@ -38,7 +48,7 @@ const MovieDetail = () => {
 
           <p className="text-2xl">Genres: {genres?.map((genre) => ` ${genre.name}`).join(",")}</p>
           <p className="text-2xl">Popularity: {popularity}</p>
-          <p className="text-2xl">Rating: {vote_average?.toFixed(1)} in {vote_count} votes</p>
+          <p className="text-2xl">Rating: <span className={`tag ${getVoteClass(vote_average)} text-2xl`}>{vote_average?.toFixed(1)}</span> in {vote_count} votes</p>
         </div>
       </div>
     </div>
