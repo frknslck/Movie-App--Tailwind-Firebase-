@@ -4,8 +4,8 @@ import axios from "axios";
 
 const Main = ({movies, setMovies}) => {
   const [search, setSearch] = useState("")
-
-  const url = `https://api.themoviedb.org/3/search/movie?api_key=7d204acf4302e3aec97acadbf83232d1&query=${search}`
+  const apiKey = process.env.REACT_APP_MOVIE_API_KEY
+  const url = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${search}`
   
   const handleSearch = (e) => {
     e.preventDefault()

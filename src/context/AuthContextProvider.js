@@ -12,7 +12,9 @@ export const AuthContext = createContext()
 // }
 
 const AuthContextProvider = ({ children }) => {
-  const [currentUser, setCurrentUser] = useState("")
+    const [currentUser, setCurrentUser] = useState(false)
+    //   JSON.parse(sessionStorage.getItem("user")) || false
+    // );
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -62,8 +64,13 @@ const AuthContextProvider = ({ children }) => {
           if (user) {
             const { email, displayName, photoURL } = user
             setCurrentUser({email, displayName, photoURL})
+            // sessionStorage.setItem(
+            //   "user",
+            //   JSON.stringify({ email, displayName, photoURL })
+            // );
           } else {
             setCurrentUser(false)
+            // sessionStorage.clear();
           }
         });
       }
@@ -79,15 +86,17 @@ const AuthContextProvider = ({ children }) => {
         });
        }
 
-      // const sendPasswordResetEmail(auth, email)
-      //   .then(() => {
-      //     toast.success("Password reset email sent!")
-      //   })
-      //   .catch((error) => {
-      //     toast.error(error.message)
-      // });
+       const forgotPassword = (email) => {
+        sendPasswordResetEmail(auth, email)
+          .then(() => {
+            toast.success("Please check your mail box!");
+          })
+          .catch((err) => {
+            toast.error(err.message);
+          });
+      };
 
-      const values = {register, login, logout, signUpProvider, currentUser}
+      const values = {register, login, logout, signUpProvider, forgotPassword, currentUser}
       console.log(currentUser);
   return (
     <AuthContext.Provider value={values}>

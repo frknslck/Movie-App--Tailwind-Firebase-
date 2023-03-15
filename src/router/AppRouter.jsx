@@ -11,9 +11,8 @@ import Profile from "../pages/Profile";
 const AppRouter = () => {
   const [movies, setMovies] = useState([])
   const axios = require("axios");
-  // const apiKey = process.env.REACT_APP_API2_KEY
-  // const url = `https://api.themoviedb.org/3/movie/550?api_key=${apiKey}`
-  const url = `https://api.themoviedb.org/3/discover/movie?api_key=7d204acf4302e3aec97acadbf83232d1`
+  const apiKey = process.env.REACT_APP_MOVIE_API_KEY
+  const url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}`
 
   useEffect(() => {
     axios.get(url).then((response) => {

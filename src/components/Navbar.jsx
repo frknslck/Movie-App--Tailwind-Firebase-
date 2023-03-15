@@ -2,11 +2,11 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import avatar from "../assets/icons/avatar.png"
 import { AuthContext } from "../context/AuthContextProvider";
+import Switch from "./Switch";
 
 const Navbar = () => {
   const {currentUser, logout} = useContext(AuthContext)
-  const { email, displayName, photoURL } = currentUser
-  // const currentUser = {displayName: "Furkan", photoURL: ""}
+  const { displayName, photoURL } = currentUser
   return (
     <div>
       <nav
@@ -22,6 +22,7 @@ const Navbar = () => {
           {/* Right elements */}
           <div className="relative flex items-center">
             {currentUser && <h5 className="text-2xl capitalize mr-2">{displayName}</h5>}
+            <Switch />
             <div className="relative" data-te-dropdown-ref="">
               <span
                 className="hidden-arrow flex items-center whitespace-nowrap transition duration-150 ease-in-out motion-reduce:transition-none"

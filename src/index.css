@@ -31,7 +31,6 @@ body{
   .form-container form{
     @apply absolute inset-[2px] rounded-[8px] bg-gray-100 dark:bg-gray-dark-second z-[10] flex flex-col py-[50px] px-[40px]
   }
-  
 }
 
 * {

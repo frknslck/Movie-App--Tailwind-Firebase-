@@ -4,6 +4,7 @@ import { AuthContext } from "../context/AuthContextProvider";
 import { useNavigate, Link } from "react-router-dom";
 
 const Register = () => {
+  const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const { register, signUpProvider } = useContext(AuthContext)
@@ -11,7 +12,8 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    await register(email, password)
+    const displayName = `${name}`;
+    await register(email, password, displayName)
     e.target.reset()
   }
 
@@ -22,6 +24,17 @@ const Register = () => {
         <h2 className="text-red-main text-2xl font-[500] text-center tracking-[0.1em] mb-3">
           Sign Up
         </h2>
+        <div className="relative z-0 w-full mb-6 group">
+          <input
+            name="floating_name"
+            type="text"
+            className="peer"
+            placeholder=" "
+            required
+            onChange={(e) => setName(e.target.value)}
+          />
+          <label htmlFor="floating_name">Name</label>
+        </div>
         <div className="relative z-0 w-full mb-6 group">
           <input
             name="floating_email"
