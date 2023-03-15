@@ -44,7 +44,7 @@ const Profile = () => {
             onChange={(e) => setCurrentUser({...currentUser, displayName: e.target.value})}
             contentEditable={edit}
           />
-          <label>User Name:</label>
+          <label>User Name</label>
         </div>
         <div className="relative z-0 w-full mb-6 group">
           <input
@@ -54,7 +54,7 @@ const Profile = () => {
             value={email}
             contentEditable="false"
           />
-          <label>E-mail:</label>
+          <label>E-mail</label>
         </div>
         <div className="relative z-0 w-full mb-2 group">
           <input
@@ -65,7 +65,7 @@ const Profile = () => {
             onChange={(e) => setCurrentUser({...currentUser, photoURL: e.target.value})}
             contentEditable={edit}
           />
-          <label>E-mail:</label>
+          <label>Profile Picture URL</label>
         </div>
         <div className='flex'>
           <button className="btn-danger" type="button" onClick={() => editStatus()}>

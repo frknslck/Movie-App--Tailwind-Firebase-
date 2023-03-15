@@ -1,5 +1,15 @@
 import React from 'react'
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
+
+const getVoteClass = (vote) => {
+  if (vote >= 8) {
+    return "green";
+  } else if (vote >= 6) {
+    return "orange";
+  } else {
+    return "red";
+  }
+};
 
 const MovieCard = ({movie}) => {
     const { poster_path, title, overview,vote_average } = movie
@@ -24,8 +34,8 @@ const MovieCard = ({movie}) => {
                   <h5 className="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
                     {title}
                   </h5>
-                  <h5 className="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
-                  ⭐{vote_average}
+                  <h5 className={`tag ${getVoteClass(vote_average)} mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50`}>
+                  ⭐{vote_average.toFixed(1)}
                   </h5>
                 </div>
                 <button
