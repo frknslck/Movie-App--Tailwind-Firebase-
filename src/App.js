@@ -5,10 +5,12 @@ import AuthContextProvider from "./context/AuthContextProvider";
 
 const App = () => {
   return (
-    <AuthContextProvider>
-      <Toaster/>
-      <AppRouter />
-    </AuthContextProvider>
+    <div className="dark:bg-gray-dark-main">
+      <AuthContextProvider>
+        <Toaster/>
+        <AppRouter />
+      </AuthContextProvider>
+    </div>
   );
 };
 

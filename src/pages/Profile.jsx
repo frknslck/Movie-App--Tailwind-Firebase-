@@ -8,13 +8,6 @@ const Profile = () => {
     const {currentUser, setCurrentUser, profileChange} = useContext(AuthContext)
     const {displayName, photoURL, email} = currentUser
 
-    const editStatus = () => {
-      if (edit == false) {
-        toast.error("Already in edit mode!")
-      }
-      setEdit(false)
-    }
-
     const saveProfile = (e) => {
       e.preventDefault()
       profileChange(displayName, photoURL)
@@ -68,7 +61,7 @@ const Profile = () => {
           <label>Profile Picture URL</label>
         </div>
         <div className='flex'>
-          <button className="btn-danger" type="button" onClick={() => editStatus()}>
+          <button className={edit ? "btn-danger" : "btn-secondary cursor-default"} type="button" disabled={edit ? false : true} onClick={() => setEdit(false)}>
             Edit Profile
           </button>
           <button className={!edit ? "btn-danger" : "btn-secondary cursor-default"} type="submit" disabled={!edit ? false : true}>
