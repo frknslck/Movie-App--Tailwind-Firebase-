@@ -24,7 +24,7 @@ const MovieCard = ({movie}) => {
                   src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
                   alt=""
                 />
-                <div className="absolute h-full w-full bg-black/90 flex items-center justify-center -bottom-10 group-hover:bottom-0 opacity-0 group-hover:opacity-100 transition-all duration-300 text-white flex-col px-5 gap-5 overflow-scroll">
+                <div className="absolute h-full w-full bg-black/90 flex items-center justify-center -bottom-10 group-hover:bottom-0 opacity-0 group-hover:opacity-100 transition-all duration-300 text-white flex-col px-5 gap-5">
                   <h3 className='text-3xl'>Overview</h3>
                   <p>{overview}</p>
                 </div>

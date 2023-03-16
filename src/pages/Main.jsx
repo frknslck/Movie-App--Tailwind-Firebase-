@@ -16,11 +16,10 @@ const Main = ({movies, setMovies, spinner, setSpinner, errorStatus, setErrorStat
     setSpinner(true)
     axios.get(url).then((response) => {
       setMovies(response.data)
-      setSpinner(false)
     }).catch((error) => {
       console.log(error);
       setErrorStatus(true)
-    })
+    }).finally(() => setSpinner(false))
     e.target.reset()
   }
 

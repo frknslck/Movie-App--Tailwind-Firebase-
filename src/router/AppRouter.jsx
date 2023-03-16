@@ -11,7 +11,7 @@ import Profile from "../pages/Profile";
 const AppRouter = () => {
   const [spinner, setSpinner] = useState(false)
   const [errorStatus, setErrorStatus] = useState(false)
-  const [movies, setMovies] = useState([])
+  const [movies, setMovies] = useState()
   const axios = require("axios");
   const apiKey = process.env.REACT_APP_MOVIE_API_KEY
   const url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}`
@@ -20,11 +20,10 @@ const AppRouter = () => {
     setSpinner(true)
     axios.get(url).then((response) => {
       setMovies(response.data)
-      setSpinner(false)
     }).catch((error) => {
       console.log(error);
       setErrorStatus(true)
-    })
+    }).finally(() => setSpinner(false))
   }, [])
 
   return (
