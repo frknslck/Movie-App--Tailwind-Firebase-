@@ -1,8 +1,9 @@
 import React, {useState, useEffect} from "react";
 import MovieCard from "../components/MovieCard";
 import axios from "axios";
+import Spinner from "../components/Spinner";
 
-const Main = ({movies, setMovies}) => {
+const Main = ({movies, setMovies, spinner, setSpinner}) => {
   const [search, setSearch] = useState("")
   const apiKey = process.env.REACT_APP_MOVIE_API_KEY
   const url = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${search}`
@@ -12,11 +13,12 @@ const Main = ({movies, setMovies}) => {
     if (!search.trim()) {
       return;
     }
+    setSpinner(true)
     axios.get(url).then((response) => {
       setMovies(response.data)
     }).catch((error) => {
       console.log(error);
-    })
+    }).finally(() => setSpinner(false))
     e.target.reset()
   }
 
@@ -59,11 +61,10 @@ const Main = ({movies, setMovies}) => {
           </button>
         </div>
       </form>
-
       {<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5 p-5">
         {movies?.results?.map((movie) => {
           return(
-            <MovieCard movie={movie} key={movie.id}/>
+           spinner ? <Spinner/> : <MovieCard movie={movie} key={movie.id}/>
           )
         })}
       </div>}

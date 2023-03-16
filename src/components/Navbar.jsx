@@ -10,7 +10,7 @@ const Navbar = () => {
   return (
     <div>
       <nav
-        className="flex w-full flex-wrap items-center justify-between bg-white dark:bg-neutral-900 py-3 dark:text-white shadow-lg lg:flex-wrap lg:justify-start fixed top-0 z-20"
+        className="flex w-full flex-wrap items-center justify-between bg-white dark:bg-[#23242a] py-3 dark:text-white shadow-lg lg:flex-wrap lg:justify-start fixed top-0 z-20"
         data-te-navbar-ref=""
       >
         <div className="flex w-full flex-wrap items-center justify-between px-6">

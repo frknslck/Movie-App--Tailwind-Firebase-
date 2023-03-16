@@ -5,7 +5,7 @@ import AuthContextProvider from "./context/AuthContextProvider";
 
 const App = () => {
   return (
-    <div className="dark:bg-gray-dark-main">
+    <div className="dark:bg-[#23242a]">
       <AuthContextProvider>
         <Toaster/>
         <AppRouter />
