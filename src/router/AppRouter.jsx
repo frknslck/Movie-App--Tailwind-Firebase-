@@ -10,6 +10,7 @@ import Profile from "../pages/Profile";
 
 const AppRouter = () => {
   const [spinner, setSpinner] = useState(false)
+  const [errorStatus, setErrorStatus] = useState(false)
   const [movies, setMovies] = useState([])
   const axios = require("axios");
   const apiKey = process.env.REACT_APP_MOVIE_API_KEY
@@ -19,16 +20,18 @@ const AppRouter = () => {
     setSpinner(true)
     axios.get(url).then((response) => {
       setMovies(response.data)
+      setSpinner(false)
     }).catch((error) => {
       console.log(error);
-    }).finally(() => setSpinner(false))
+      setErrorStatus(true)
+    })
   }, [])
 
   return (
     <>
       <Navbar/>
       <Routes>
-        <Route path="/" element={<Main movies={movies} setMovies={setMovies} spinner={spinner} setSpinner={setSpinner}/>}/>
+        <Route path="/" element={<Main movies={movies} setMovies={setMovies} spinner={spinner} setSpinner={setSpinner} errorStatus={errorStatus} setErrorStatus={setErrorStatus}/>}/>
         <Route path="/login" element={<Login/>}/> 
         <Route path="/register" element={<Register/>}/> 
         <Route path="/details/:id" element={<PrivateRouter/>}>

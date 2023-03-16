@@ -101,3 +101,7 @@ input:-webkit-autofill{
   -webkit-box-shadow: 0 0 0px 0px #28292d inset !important;
   transition: background-color 5000s ease-in-out 0s !important;
 }
+
+.cozemedim{
+  background-color: #23242a;
+}

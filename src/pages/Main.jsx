@@ -3,7 +3,7 @@ import MovieCard from "../components/MovieCard";
 import axios from "axios";
 import Spinner from "../components/Spinner";
 
-const Main = ({movies, setMovies, spinner, setSpinner}) => {
+const Main = ({movies, setMovies, spinner, setSpinner, errorStatus, setErrorStatus}) => {
   const [search, setSearch] = useState("")
   const apiKey = process.env.REACT_APP_MOVIE_API_KEY
   const url = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${search}`
@@ -16,14 +16,16 @@ const Main = ({movies, setMovies, spinner, setSpinner}) => {
     setSpinner(true)
     axios.get(url).then((response) => {
       setMovies(response.data)
+      setSpinner(false)
     }).catch((error) => {
       console.log(error);
-    }).finally(() => setSpinner(false))
+      setErrorStatus(true)
+    })
     e.target.reset()
   }
 
   return (
-    <div>
+    <div className="dark:bg-[#23242a]">
       <form className="w-3/6 mx-auto" onSubmit={handleSearch}>
         <label
           htmlFor="default-search"
@@ -61,13 +63,13 @@ const Main = ({movies, setMovies, spinner, setSpinner}) => {
           </button>
         </div>
       </form>
-      {<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5 p-5">
-        {movies?.results?.map((movie) => {
-          return(
-           spinner ? <Spinner/> : <MovieCard movie={movie} key={movie.id}/>
-          )
-        })}
-      </div>}
+      {spinner && <Spinner/>}
+      {errorStatus && <p className="text-center text-3xl dark:text-white mt-5">❌ There is nothing to show here...</p>}
+      {<div className="dark:bg-[#23242a] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5 p-5">
+            {movies?.results?.map((movie) => {
+            return(
+            <MovieCard movie={movie} key={movie.id}/>)})}
+          </div>}
     </div>
   );
 };

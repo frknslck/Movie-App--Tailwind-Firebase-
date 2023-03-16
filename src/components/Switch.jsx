@@ -10,8 +10,10 @@ const Switch = () => {
   
   if (darkMode) {
     document.documentElement.classList.add("dark");
+    // document.documentElement.classList.add("cozemedim");
   } else {
     document.documentElement.classList.remove("dark");
+    // document.documentElement.classList.remove("cozemedim");
   }
 
   return (
