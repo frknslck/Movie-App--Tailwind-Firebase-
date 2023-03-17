@@ -26,11 +26,12 @@ console.log(messages);
     <>
     <div className='max-w-[728px] mx-auto text-center'>
         <h1 className='dark:text-white text-4xl pb-3 border-b-2 border-red-main'>Welcome to chat room {auth.currentUser.displayName}</h1>
-        <div className='flex-col p-[10px] relative'>
+        <div className='flex-col p-[10px] relative border max-h-[665px] overflow-scroll overflow-x-hidden'>
             {messages && messages.map((message) => {
                 return <Messages key={message.id} message={message}/>
             })}
         </div>
+        <span className='h-14' ref={scroll}></span>
         <SendMessage ref={scroll}/>
         <span ref={scroll}></span>
     </div>
