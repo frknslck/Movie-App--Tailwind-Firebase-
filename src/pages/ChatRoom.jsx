@@ -31,8 +31,8 @@ const ChatRoom = () => {
   return (
     <>
       <div className='max-w-[728px] mx-auto text-center'>
-        <h1 className='dark:text-white text-4xl pb-3'>Welcome to chat room {auth.currentUser.displayName}</h1>
-        <div ref={scrollRef} className='flex-col p-[10px] relative shadow-md shadow-red-main max-h-[665px] overflow-scroll overflow-x-hidden'>
+        <h1 className='dark:text-white text-4xl pb-3 shadow-sm shadow-red-main'>Welcome to chat room {auth.currentUser.displayName}</h1>
+        <div ref={scrollRef} className='flex-col p-[10px] relative shadow-sm shadow-red-main max-h-[665px] overflow-scroll overflow-x-hidden'>
           {messages && messages.map((message) => {
             return <Messages key={message.id} message={message}/>
           })}
