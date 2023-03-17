@@ -3,10 +3,19 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../context/AuthContextProvider";
 import ChatRoomBtn from "./ChatRoomBtn";
 import Switch from "./Switch";
+import { MovieContext } from "../context/MovieContext";
 
 const Navbar = () => {
   const {currentUser, logout} = useContext(AuthContext)
   const { displayName, photoURL } = currentUser
+
+  const API_KEY = process.env.REACT_APP_MOVIE_API_KEY
+  const BACK_API = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}`
+
+  const {getMovies} = useContext(MovieContext)
+  const handleOrigin = () => {
+    getMovies(BACK_API)
+  }
   return (
     <div>
       <nav
@@ -14,7 +23,7 @@ const Navbar = () => {
         data-te-navbar-ref=""
       >
         <div className="flex w-full flex-wrap items-center justify-between px-6">
-          <Link className="pr-2 text-xl font-semibold dark:text-white" to="/">
+          <Link className="pr-2 text-xl font-semibold dark:text-white" onClick={handleOrigin} to="/">
             Movie App
           </Link>
 

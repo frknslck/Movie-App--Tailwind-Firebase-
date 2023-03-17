@@ -1,8 +1,11 @@
 import React from 'react'
 import { useNavigate} from 'react-router-dom';
-
+import { useContext } from 'react';
+import { AuthContext } from '../context/AuthContextProvider';
+import toast from "react-hot-toast"
 const MovieCard = ({movie}) => {
     const { poster_path, title, overview,vote_average } = movie
+    const {currentUser} = useContext(AuthContext)
     const getVoteClass = (vote) => {
       if (vote >= 8) {
         return "green";
@@ -13,6 +16,14 @@ const MovieCard = ({movie}) => {
       }
     };
     const navigate = useNavigate()
+    const handleRedirect = () => {
+      if (currentUser) {
+        navigate(`/details/${movie.id}`) 
+      }else{
+        toast.error("Pleage log in for more details!")
+        (navigate(`/details/${movie.id}`))
+      }
+    }
     return (
         <div>
           <div className="flex justify-center">
@@ -42,7 +53,7 @@ const MovieCard = ({movie}) => {
                   className="inline-block rounded bg-danger px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#dc4c64] transition duration-150 ease-in-out hover:bg-danger-600 hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:bg-danger-600 focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:outline-none focus:ring-0 active:bg-danger-700 active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)]"
                   data-te-ripple-init=""
                   data-te-ripple-color="light"
-                  onClick={() => navigate(`/details/${movie.id}`)}>
+                  onClick={handleRedirect}>
                   More Details
                 </button>
               </div>
