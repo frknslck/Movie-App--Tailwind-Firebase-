@@ -1,7 +1,5 @@
 import React, { useContext, useState } from 'react'
 import { AuthContext } from "../context/AuthContextProvider";
-import avatar from "../assets/icons/avatar.png"
-import { toast } from 'react-hot-toast';
 
 const Profile = () => {
     const [edit, setEdit] = useState(true)
@@ -25,7 +23,7 @@ const Profile = () => {
         <div className="photo-wrapper p-2 ">
             <img
             className="w-40 h-40 rounded-full mx-auto border-2 border-[#b91c1c]"
-            src={photoURL || avatar}
+            src={photoURL || "https://i.ibb.co/GTgY47j/avatar.png"}
             />
         </div>
         <div className="relative z-0 w-full my-6 group">

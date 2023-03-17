@@ -26,7 +26,7 @@ const AuthContextProvider = ({ children }) => {
           const {user} = await createUserWithEmailAndPassword(auth, email, password)
           await updateProfile(auth.currentUser, {
             displayName: displayName,
-            photoURL: photoURL
+            photoURL: photoURL || "https://i.ibb.co/GTgY47j/avatar.png"
           });
           toast.success("Succesfully registered!")
           console.log(user);
@@ -110,6 +110,7 @@ const AuthContextProvider = ({ children }) => {
       }
 
       const values = {register, login, logout, signUpProvider, forgotPassword, currentUser, setCurrentUser, profileChange}
+      console.log(currentUser);
   return (
     <AuthContext.Provider value={values}>
         {children}

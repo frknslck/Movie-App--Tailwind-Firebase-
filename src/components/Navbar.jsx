@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import avatar from "../assets/icons/avatar.png"
 import { AuthContext } from "../context/AuthContextProvider";
 import ChatRoomBtn from "./ChatRoomBtn";
 import Switch from "./Switch";
@@ -32,7 +31,7 @@ const Navbar = () => {
                 aria-expanded="false"
               >
                 <img
-                  src={ photoURL || avatar}
+                  src={ photoURL || "https://i.ibb.co/GTgY47j/avatar.png"}
                   className="rounded-full"
                   style={{ height: 25, width: 25 }}
                   alt=""
