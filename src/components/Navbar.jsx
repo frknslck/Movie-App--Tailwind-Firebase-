@@ -18,8 +18,6 @@ const Navbar = () => {
             React Movie App with Firebase & Tailwind
           </Link>
 
-          {/* Collapsible wrapper */}
-          {/* Right elements */}
           <div className="relative flex items-center">
             {currentUser && <h5 className="text-2xl capitalize mr-2">{displayName}</h5>}
             <Switch />
@@ -84,7 +82,6 @@ const Navbar = () => {
               </ul>
             </div>
           </div>
-          {/* Right elements */}
         </div>
       </nav>
       <div className="h-[75px]"></div>

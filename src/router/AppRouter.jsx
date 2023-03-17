@@ -14,9 +14,8 @@ const AppRouter = () => {
   const [movies, setMovies] = useState()
   const axios = require("axios");
   const apiKey = process.env.REACT_APP_MOVIE_API_KEY
-  const url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}`
 
-  useEffect(() => {
+  const getMovies = (url) => {
     setSpinner(true)
     axios.get(url).then((response) => {
       setMovies(response.data)
@@ -24,6 +23,10 @@ const AppRouter = () => {
       console.log(error);
       setErrorStatus(true)
     }).finally(() => setSpinner(false))
+  }
+
+  useEffect(() => {
+    getMovies(`https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}`)
   }, [])
 
   return (
