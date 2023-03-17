@@ -1,18 +1,18 @@
 import React from 'react'
 import { useNavigate} from 'react-router-dom';
 
-const getVoteClass = (vote) => {
-  if (vote >= 8) {
-    return "green";
-  } else if (vote >= 6) {
-    return "orange";
-  } else {
-    return "red";
-  }
-};
-
 const MovieCard = ({movie}) => {
+  console.log(movie);
     const { poster_path, title, overview,vote_average } = movie
+    const getVoteClass = (vote) => {
+      if (vote >= 8) {
+        return "green";
+      } else if (vote >= 6) {
+        return "orange";
+      } else {
+        return "red";
+      }
+    };
     const navigate = useNavigate()
     return (
         <div>

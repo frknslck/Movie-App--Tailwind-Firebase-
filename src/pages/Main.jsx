@@ -1,28 +1,22 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useContext} from "react";
 import MovieCard from "../components/MovieCard";
-import axios from "axios";
 import Spinner from "../components/Spinner";
+import { MovieContext } from "../context/MovieContext"
+import { AuthContext } from "../context/AuthContextProvider";
 
-const Main = ({movies, setMovies, spinner, setSpinner, errorStatus, setErrorStatus}) => {
+
+const Main = () => {
   const [search, setSearch] = useState("")
-  const apiKey = process.env.REACT_APP_MOVIE_API_KEY
-  const url = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${search}`
-  
+  const {movies, spinner, errorStatus, getMovies} = useContext(MovieContext)
+  const API_KEY = process.env.REACT_APP_MOVIE_API_KEY
+  const SEARCH_API = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${search}`
+  console.log(movies);
   const handleSearch = (e) => {
     e.preventDefault()
     if (!search.trim()) {
       return;
     }
-    setSpinner(true)
-    axios.get(url).then((response) => {
-      if (response.data.results.length == 0) {
-        setErrorStatus(true)
-      }else{
-        setMovies(response.data)
-      }
-    }).catch((error) => {
-      console.log(error);
-    }).finally(() => setSpinner(false))
+    getMovies(SEARCH_API)
     e.target.reset()
   }
 
@@ -68,7 +62,7 @@ const Main = ({movies, setMovies, spinner, setSpinner, errorStatus, setErrorStat
       {spinner && <Spinner/>}
       {errorStatus && <p className="text-center text-3xl dark:text-white mt-5">❌ There is nothing to show here...</p>}
       {<div className="dark:bg-[#23242a] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5 p-5">
-            {movies?.results?.map((movie) => {
+            {movies?.map((movie) => {
             return(
             <MovieCard movie={movie} key={movie.id}/>)})}
           </div>}
