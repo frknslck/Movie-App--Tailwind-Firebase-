@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useContext} from "react";
+import React, {useState, useContext} from "react";
 import MovieCard from "../components/MovieCard";
 import Spinner from "../components/Spinner";
 import { MovieContext } from "../context/MovieContext"
