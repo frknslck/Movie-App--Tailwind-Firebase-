@@ -3,11 +3,6 @@ import React, { useState } from "react";
 const Switch = () => {
   const [darkMode, setDarkMode] = useState(localStorage.getItem("dark") || true);
 
-  const handleDarkMode = () => {
-    setDarkMode(!darkMode)
-    localStorage.setItem("dark", darkMode)
-  }
-  
   if (darkMode) {
     document.documentElement.classList.add("dark");
     document.documentElement.classList.add("cozemedim");
@@ -15,7 +10,12 @@ const Switch = () => {
     document.documentElement.classList.remove("dark");
     document.documentElement.classList.remove("cozemedim");
   }
-
+  
+  const handleDarkMode = () => {
+    setDarkMode(!darkMode)
+    localStorage.setItem("dark", darkMode)
+  }
+  
   return (
     <div className="flex col-span-1 justify-end">
       <button
