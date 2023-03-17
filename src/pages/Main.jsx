@@ -3,11 +3,14 @@ import MovieCard from "../components/MovieCard";
 import Spinner from "../components/Spinner";
 import { MovieContext } from "../context/MovieContext"
 import { AuthContext } from "../context/AuthContextProvider";
-
+import { useNavigate } from "react-router-dom";
+import  toast  from "react-hot-toast";
 
 const Main = () => {
   const [search, setSearch] = useState("")
   const {movies, spinner, errorStatus, getMovies} = useContext(MovieContext)
+  const {currentUser} = useContext(AuthContext)
+  const navigate = useNavigate()
   const API_KEY = process.env.REACT_APP_MOVIE_API_KEY
   const SEARCH_API = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${search}`
   console.log(movies);
@@ -16,7 +19,12 @@ const Main = () => {
     if (!search.trim()) {
       return;
     }
-    getMovies(SEARCH_API)
+    if (currentUser && search) {
+      getMovies(SEARCH_API);
+    } else {
+      toast.error("Please log in to search a movie!");
+      navigate("/login");
+    }
     e.target.reset()
   }
 

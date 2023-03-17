@@ -7,12 +7,10 @@ const Login = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const { login, signUpProvider } = useContext(AuthContext)
-  const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     await login(email, password)
-
     e.target.reset()
   }
 
