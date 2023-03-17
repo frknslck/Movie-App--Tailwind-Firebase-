@@ -15,7 +15,7 @@ const Navbar = () => {
       >
         <div className="flex w-full flex-wrap items-center justify-between px-6">
           <Link className="pr-2 text-xl font-semibold dark:text-white" to="/">
-            React Movie App with Firebase & Tailwind
+            Movie App
           </Link>
 
           <div className="relative flex items-center">
