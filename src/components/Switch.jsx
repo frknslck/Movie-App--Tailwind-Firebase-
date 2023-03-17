@@ -1,21 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const Switch = () => {
-  const [darkMode, setDarkMode] = useState(localStorage.getItem("dark") || true);
+  const [darkMode, setDarkMode] = useState(localStorage.getItem("dark") === "true");
 
-  if (darkMode) {
-    document.documentElement.classList.add("dark");
-    document.documentElement.classList.add("cozemedim");
-  } else {
-    document.documentElement.classList.remove("dark");
-    document.documentElement.classList.remove("cozemedim");
-  }
-  
+  useEffect(() => {
+    console.log(darkMode);
+    if (darkMode) {
+      document.documentElement.classList.add("dark");
+      document.documentElement.classList.add("cozemedim");
+    } else {
+      document.documentElement.classList.remove("dark");
+      document.documentElement.classList.remove("cozemedim");
+    }
+    localStorage.setItem("dark", darkMode);
+  }, [darkMode]);
+
   const handleDarkMode = () => {
     setDarkMode(!darkMode)
-    localStorage.setItem("dark", darkMode)
   }
   
+  console.log(document.documentElement);
   return (
     <div className="flex col-span-1 justify-end">
       <button
