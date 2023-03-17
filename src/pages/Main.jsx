@@ -13,7 +13,6 @@ const Main = () => {
   const navigate = useNavigate()
   const API_KEY = process.env.REACT_APP_MOVIE_API_KEY
   const SEARCH_API = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${search}`
-  console.log(movies);
   const handleSearch = (e) => {
     e.preventDefault()
     if (!search.trim()) {
@@ -27,7 +26,6 @@ const Main = () => {
     }
     e.target.reset()
   }
-
   return (
     <div className="dark:bg-[#23242a]">
       <form className="w-3/6 mx-auto" onSubmit={handleSearch}>

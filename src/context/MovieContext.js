@@ -14,6 +14,9 @@ const MovieContextProvider = ({ children }) => {
   const getMovies = (url) => {
     setSpinner(true)
     axios.get(url).then((response) => {
+      if (response.data.results.length == 0) {
+        setErrorStatus(true)
+      }
       setMovies(response.data.results)
     }).catch((error) => {
       console.log(error);

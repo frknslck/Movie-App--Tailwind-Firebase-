@@ -2,7 +2,6 @@ import React from 'react'
 import { useNavigate} from 'react-router-dom';
 
 const MovieCard = ({movie}) => {
-  console.log(movie);
     const { poster_path, title, overview,vote_average } = movie
     const getVoteClass = (vote) => {
       if (vote >= 8) {
