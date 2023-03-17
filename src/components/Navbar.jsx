@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import avatar from "../assets/icons/avatar.png"
 import { AuthContext } from "../context/AuthContextProvider";
+import ChatRoomBtn from "./ChatRoomBtn";
 import Switch from "./Switch";
 
 const Navbar = () => {
@@ -20,6 +21,7 @@ const Navbar = () => {
 
           <div className="relative flex items-center">
             {currentUser && <h5 className="text-2xl capitalize mr-2">{displayName}</h5>}
+            <Link to="/chatroom"><ChatRoomBtn/></Link>
             <Switch />
             <div className="relative" data-te-dropdown-ref="">
               <span

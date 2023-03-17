@@ -4,7 +4,6 @@ const Switch = () => {
   const [darkMode, setDarkMode] = useState(localStorage.getItem("dark") === "true");
 
   useEffect(() => {
-    console.log(darkMode);
     if (darkMode) {
       document.documentElement.classList.add("dark");
       document.documentElement.classList.add("cozemedim");
@@ -19,7 +18,6 @@ const Switch = () => {
     setDarkMode(!darkMode)
   }
   
-  console.log(document.documentElement);
   return (
     <div className="flex col-span-1 justify-end">
       <button

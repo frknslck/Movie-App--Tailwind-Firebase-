@@ -7,6 +7,7 @@ import Register from "../pages/Register";
 import MovieDetail from "../pages/MovieDetail";
 import PrivateRouter from "./PrivateRouter";
 import Profile from "../pages/Profile";
+import ChatRoom from "../pages/ChatRoom";
 
 const AppRouter = () => {
   return (
@@ -21,6 +22,9 @@ const AppRouter = () => {
         </Route>
         <Route path="/profile" element={<PrivateRouter/>}>
           <Route path="" element={<Profile/>}/>
+        </Route>
+        <Route path="/chatroom" element={<PrivateRouter/>}>
+          <Route path="" element={<ChatRoom/>}/>
         </Route>
       </Routes>
     </>
