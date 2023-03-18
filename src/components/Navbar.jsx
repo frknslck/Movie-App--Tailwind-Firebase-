@@ -8,14 +8,15 @@ import { MovieContext } from "../context/MovieContext";
 const Navbar = () => {
   const {currentUser, logout} = useContext(AuthContext)
   const { displayName, photoURL } = currentUser
-
   const API_KEY = process.env.REACT_APP_MOVIE_API_KEY
   const BACK_API = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}`
+  const {getMovies, setErrorStatus} = useContext(MovieContext)
 
-  const {getMovies} = useContext(MovieContext)
   const handleOrigin = () => {
+    setErrorStatus(false)
     getMovies(BACK_API)
   }
+
   return (
     <div>
       <nav
@@ -26,7 +27,6 @@ const Navbar = () => {
           <Link className="pr-2 text-xl font-semibold dark:text-white" onClick={handleOrigin} to="/">
             Movie App
           </Link>
-
           <div className="relative flex items-center">
             {currentUser && <h5 className="text-2xl capitalize mr-2">{displayName}</h5>}
             <Link to="/chatroom"><ChatRoomBtn/></Link>

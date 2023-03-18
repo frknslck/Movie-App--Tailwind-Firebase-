@@ -8,11 +8,15 @@ import  toast  from "react-hot-toast";
 
 const Main = () => {
   const [search, setSearch] = useState("")
+  const [selectedOption, setSelectedOption] = useState("");
   const {movies, spinner, errorStatus, getMovies} = useContext(MovieContext)
   const {currentUser} = useContext(AuthContext)
   const navigate = useNavigate()
   const API_KEY = process.env.REACT_APP_MOVIE_API_KEY
   const SEARCH_API = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${search}`
+  const POPULAR_API = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}`
+  const UPCOMING_API = `https://api.themoviedb.org/3/movie/upcoming?api_key=${API_KEY}`
+  const TOP_API = `https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}`
   const handleSearch = (e) => {
     e.preventDefault()
     if (!search.trim()) {
@@ -26,9 +30,23 @@ const Main = () => {
     }
     e.target.reset()
   }
+
+  function handleOptionChange(event) {
+    const selectedOption = event.target.value;
+    setSelectedOption(selectedOption);
+    if (selectedOption === "popular") {
+      getMovies(POPULAR_API);
+    } else if (selectedOption === "upcoming") {
+      getMovies(UPCOMING_API);
+    } else if (selectedOption === "top-rated") {
+      getMovies(TOP_API);
+    }
+  }
+
   return (
     <div className="dark:bg-[#23242a]">
-      <form className="w-3/6 mx-auto" onSubmit={handleSearch}>
+      <div className="flex justify-center gap-4">
+      <form className="w-2/6" onSubmit={handleSearch}>
         <label
           htmlFor="default-search"
           className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">
@@ -65,6 +83,12 @@ const Main = () => {
           </button>
         </div>
       </form>
+        <select value={selectedOption} onChange={handleOptionChange} className="p-2.5 w-25 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-danger-600 dark:bg-gray-700 dark:border-gray-600 dark:text-white appearance-none focus:outline-none">
+            <option value="popular">Popular Movies</option>
+            <option value="upcoming">Upcoming Movies</option>
+            <option value="top-rated">Top Rated Movies</option>
+        </select>
+      </div>
       {spinner && <Spinner/>}
       {errorStatus && <p className="text-center text-3xl dark:text-white mt-5">❌ There is nothing to show here...</p>}
       {<div className="dark:bg-[#23242a] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5 p-5">
