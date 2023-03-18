@@ -83,7 +83,7 @@ const Main = () => {
           </button>
         </div>
       </form>
-        <select value={selectedOption} onChange={handleOptionChange} className="pl-3.5 w-25 rounded-lg bg-gray-50 text-gray-900 border border-gray-300 focus:border-danger-600 dark:bg-gray-700 dark:text-white dark:border-gray-600 dark:focus:border-danger-600 appearance-none focus:outline-none">
+        <select value={selectedOption} onChange={handleOptionChange} className="px-2 text-center w-25 rounded-lg bg-gray-50 text-gray-900 border border-gray-300 focus:border-danger-600 dark:bg-gray-700 dark:text-white dark:border-gray-600 dark:focus:border-danger-600 appearance-none focus:outline-none">
             <option value="popular">Popular Movies</option>
             <option value="upcoming">Upcoming Movies</option>
             <option value="top-rated">Top Rated Movies</option>
